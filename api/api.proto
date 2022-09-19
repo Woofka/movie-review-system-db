@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package ozon.dev.movie_review_system_db.api;
+
+option go_package = "gitlab.ozon.dev/Woofka/movie-review-system-db/pkg/api;api";
+
+// import "google/api/annotations.proto";
+
+service Repository {
+  rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse) {}
+  rpc GetReview(GetReviewRequest) returns (GetReviewResponse) {}
+  rpc UpdateReview(UpdateReviewRequest) returns (UpdateReviewResponse) {}
+  rpc DeleteReview(DeleteReviewRequest) returns (DeleteReviewResponse) {}
+  rpc ListReview(ListReviewRequest) returns (ListReviewResponse) {}
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// CreateReview endpoint messages
+// ---------------------------------------------------------------------------------------------------------------------
+
+message CreateReviewRequest {
+  Review review = 1;
+}
+message CreateReviewResponse {}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// GetReview endpoint messages
+// ---------------------------------------------------------------------------------------------------------------------
+
+message GetReviewRequest {
+  uint64 id = 1;
+}
+message GetReviewResponse {
+  Review review = 1;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// UpdateReview endpoint messages
+// ---------------------------------------------------------------------------------------------------------------------
+
+message UpdateReviewRequest {
+  Review review = 1;
+}
+message UpdateReviewResponse {}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// DeleteReview endpoint messages
+// ---------------------------------------------------------------------------------------------------------------------
+
+message DeleteReviewRequest {
+  uint64 id = 1;
+}
+message DeleteReviewResponse {}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// CreateReview endpoint messages
+// ---------------------------------------------------------------------------------------------------------------------
+
+message ListReviewRequest {
+  uint64 limit = 1;
+  uint64 offset = 2;
+  bool orderDesc = 3;
+}
+message ListReviewResponse {
+  repeated Review reviews = 1;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Review message
+// ---------------------------------------------------------------------------------------------------------------------
+
+message Review {
+  string reviewer   = 1;
+  string movie_title = 2;
+  string text       = 3;
+  uint32 rating     = 4;
+  uint64 id         = 5;
+}

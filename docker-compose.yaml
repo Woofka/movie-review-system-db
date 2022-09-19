@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:14.4
+    container_name: 'postgresql-movie-review'
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: movie_review
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    ports:
+      - 5432:5432
+    restart: always
